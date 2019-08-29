@@ -1,96 +1,48 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp());   // Flutter项目运行之后的入口函数，这里运行MyApp这个类
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+class MyApp extends StatelessWidget {   // MyApp的类，继承StatelessWidget组件，表示其状态不会发生改变，但是其子组件可以为StatefulWidget组件
+  @override   // 重写父类StatelessWidget的构造方法
+  Widget build(BuildContext context) {  // 构造页面的函数，其中Context表示其上下文，即通过Context，可以对该组件进行操作
+    return MaterialApp(   // 构造函数会返回一个组件，MaterialApp是一个Flutter框架的一个容器Widget
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue, // 声明组件的主题颜色
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),  // 表明MyHomePage为MaterialApp的子Widget，title为其传入子组件的值
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {   // MyHomePage的类，继承StatefulWidget组件，表示其状态改变可以使页面发生改变
+  MyHomePage({Key key, this.title}) : super(key: key);  // 这里的key为默认加上的，用来标记组件的唯一性，this.title为其构造函数的参数
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  final String title;   // 该类的属性，方便构造函数进行构造
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();   // StatefulWidget组件的状态，默认命名为这样，通过createState()函数来返回该组件的页面布局
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage> {    // 声明_MyHomePageState其为MyHomePage的State类
+  int _counter = 0;   // _MyHomePageState的属性
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
+  void _incrementCounter() {    // _MyHomePageState的函数
+    setState(() {   // 通过setState进行改变数据，能够让页面也发生改变，如果直接赋值，则不行
       _counter++;
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
+  Widget build(BuildContext context) {  // 同上，该为构造页面的函数
+    return Scaffold(    // 返回一个Scaffold容器Widget，下面即为对该容器的某些属性的声明
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title),  // 声明该组件的appBar属性为一个AppBar的容器Widget，并且容器的title为一个Text文本组件，该Text组件的值为MyHomePage的title属性
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      body: Center(   // Scaffold的body，声明其为一个Center容器Widget的页面，使其布局上下左右居中
+        child: Column(  // 为Center组件的子组件，是一个按列方向排序的组件，其子组件可以有多个
+          mainAxisAlignment: MainAxisAlignment.center,  // Column组件的属性
+          children: <Widget>[   // Column组件的子组件，为垂直方向进行排序渲染
             Text(
               'You have pushed the button this many times:',
             ),
@@ -101,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(   // Scaffold的容器，即为图片右下角的按钮，当其点击触发_incrementCounter函数
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
